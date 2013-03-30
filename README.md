@@ -43,13 +43,13 @@ encryptor.decrypt(encrypted_str) == data # true
 
   Configuration
   -------------
-  For symmetric encryption / decryption you need to set an encryption key. The rest of the settings are optional. Here is a list of all of them:
-  `Encryption.key` - Your encryption key
-  `Encryption.iv # Optional` - Encryption initialization vector. Defaults to the charecter `"\0"`
-  `Encryption.cipher # Optional` - Your encryption algorithm. Defaults to `aes-256-cbc`
+  For symmetric encryption / decryption you need to set an encryption key. The rest of the settings are optional. Here is a list of all of them:  
+  `Encryption.key` - Your encryption key  
+  `Encryption.iv # Optional` - Encryption initialization vector. Defaults to the charecter `"\0"`  _(Optional)_  
+  `Encryption.cipher # Optional` - Your encryption algorithm. Defaults to `aes-256-cbc` _(Optional)_  
   Run `openssl list-cipher-commands` in the terminal to list all installed ciphers or call `OpenSSL::Cipher.ciphers` in _Ruby_, which will return an array, containing all available algorithms.
 
-  You can optionally configure both a global instance and a custom instance with a __block__:
+  You can optionally configure both a global instance and a custom instance with a _block_:
   ```ruby
 Encryption.config do |config|
   config.key = "don't look at me!"
