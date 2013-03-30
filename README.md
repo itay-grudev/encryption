@@ -83,7 +83,7 @@ private_key.to_pem('passphrase')
 
   `Encryption::PublicKey` and `Encryption::PrivateKey`
   ----------------------------------------------------
-  Both classes have the same syntax
+  Both classes have the same methods
 
   ```ruby
 # Import an existing key
@@ -97,7 +97,6 @@ public_key.encrypt("H3LL0¡")
 
 # Note that you can use both public and private keys to encrypt and decrypt data
   ```
-
 
 Helpers
 -------
@@ -118,8 +117,9 @@ Helpers
 
 License
 -------
-This gem is distributed under the MIT License.
+This gem is distributed under The MIT License.
 
   Author
   ------
-  Itay Grudev - ![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
+  Itay Grudev  
+  &nbsp;&nbsp;![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
