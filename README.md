@@ -110,3 +110,11 @@ public_key.encrypt("H3LL0¡")
     Hash helpers
     ------------
 -->
+
+License
+-------
+This gem is distributed under the MIT License.
+
+  Author
+  ------
+  Itay Grudev - ![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
