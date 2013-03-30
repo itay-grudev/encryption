@@ -2,6 +2,8 @@ require_relative 'configuration.rb'
 require_relative 'modules.rb'
 require_relative 'helpers.rb'
 
+String.send(:include, Encryption::String)
+
 module Encryption
 
   @@instance = nil # An instance to Encryption::Symmetric

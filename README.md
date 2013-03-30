@@ -98,18 +98,23 @@ public_key.encrypt("H3LL0¡")
 # Note that you can use both public and private keys to encrypt and decrypt data
   ```
 
-<!---
-  Helpers
-  -------
-    String helpers
-    --------------
 
-    Array helpers
-    -------------
+Helpers
+-------
+  String helper
+  -------------
+  The gem adds the `encrypt` and `decrypt` methods to the `String` class.
+  You can use them as follows:
+  ```ruby
+# With the global Encryption instance
+"Hello".encrypt
+"Hello".encrypt!
+"h3LL0".decrypt
+"h3LL0".decrypt!
 
-    Hash helpers
-    ------------
--->
+# With custom settings (and custom encryptor instance)
+"Hello".encrypt({ key: 'encryption key', iv: 'initialization vector', cipher: 'encryption algorithm' })
+  ```
 
 License
 -------
