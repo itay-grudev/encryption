@@ -21,7 +21,7 @@ describe Encryption::Symmetric do
     encryptor.cipher.should == cipher
   end
 
-  OpenSSL::Cipher.ciphers.each do |cipher|
+  %x(openssl list-cipher-commands).split.each do |cipher|
     next if ! cipher[-3, 3].nil? and ['gcm', 'fb1'].include? cipher[-3, 3].downcase
     describe 'with cipher ' + cipher do
 
