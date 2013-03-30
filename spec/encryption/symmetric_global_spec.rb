@@ -20,7 +20,7 @@ describe Encryption do
   end
 
   %x(openssl list-cipher-commands).split.each do |cipher|
-    next if ! cipher[-3, 3].nil? and ['gcm', 'fb1'].include? cipher[-3, 3].downcase
+    next if ['base64', 'zlib'].include? cipher
     
     describe 'with cipher ' + cipher do
       before(:each) do
