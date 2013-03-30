@@ -20,35 +20,26 @@ module Encryption
     end
 
     def encrypt(data)
-      cipher_init
+      cipher_init(:cipher, :encrypt)
       @cipher.update(data) + @cipher.final
     end
 
     def decrypt(data)
-      decipher_init
+      cipher_init(:decipher, :decrypt)
       @decipher.update(data) + @decipher.final
     end
 
     private
-    
-    def cipher_init
-      if @cipher.nil?
-        @cipher = OpenSSL::Cipher.new(@configuration.cipher)
-        @cipher.encrypt
+
+    def cipher_init(name, mode)
+      obj = instance_variable_get((name = '@' + name.to_s))
+      if obj.nil?
+        obj = instance_variable_set(name, OpenSSL::Cipher.new(@configuration.cipher))
+        obj.send mode
       end
-
-      @cipher.key = @configuration.key
-      @cipher.iv = @configuration.iv
-    end
-
-    def decipher_init
-      if @decipher.nil?
-        @decipher = OpenSSL::Cipher.new(@configuration.cipher)
-        @decipher.decrypt
-      end
-
-      @decipher.key = @configuration.key
-      @decipher.iv = @configuration.iv
+      
+      obj.key = @configuration.key
+      obj.iv = @configuration.iv
     end
 
   end
