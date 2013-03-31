@@ -112,7 +112,11 @@ Helpers
 "h3LL0".decrypt!
 
 # With custom settings (and custom encryptor instance)
-"Contact".encrypt({ key: 'encryption key', iv: 'initialization vector', cipher: 'encryption algorithm' })
+"Contact".encrypt(key: 'encryption key', iv: 'initialization vector', cipher: 'encryption algorithm', encode: true)
+
+# Note the encode option which will result in a base64 encoded string
+
+"3NcPyptED".decrypt!(encoded: true) # Will decrypt an encoded string
 
 # Or with a custom encryptor
 encryptor = Encryption::Symmetric.new

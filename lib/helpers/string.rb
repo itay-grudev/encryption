@@ -1,12 +1,18 @@
+require 'base64'
+
 module Encryption
   module String
 
     def encrypt(options = {})
-      encryptor(options).encrypt self
+      string = encryptor(options).encrypt self
+      string = Base64.encode64(string) if options[:encode]
+      string
     end
 
     def decrypt(options = {})
-      encryptor(options).decrypt self
+      string = self
+      string = Base64.decode64(self) if options[:encode] or options[:encoded]
+      encryptor(options).decrypt string
     end
 
     def encrypt!(options = {})
@@ -26,7 +32,7 @@ module Encryption
       encrypt = Encryption::Symmetric.new
 
       options.each do |key, value|
-        encrypt.send(key.to_s + '=', value)
+        encrypt.send(key.to_s + '=', value) if encrypt.respond_to? key.to_s + '='
       end
 
       encrypt
