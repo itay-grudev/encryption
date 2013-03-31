@@ -92,8 +92,8 @@ Encryption::PublicKey.new(string[, password]) # From string
 
 # Encrypt / Decrypt data
 public_key = Encryption::PublicKey.new("existing key")
-public_key.encrypt("Hello!")
-public_key.encrypt("H3LL0¡")
+public_key.encrypt("2001: A Space Odyssey")
+public_key.decrypt("H3LL0¡")
 
 # Note that you can use both public and private keys to encrypt and decrypt data
   ```
@@ -112,7 +112,12 @@ Helpers
 "h3LL0".decrypt!
 
 # With custom settings (and custom encryptor instance)
-"Hello".encrypt({ key: 'encryption key', iv: 'initialization vector', cipher: 'encryption algorithm' })
+"Contact".encrypt({ key: 'encryption key', iv: 'initialization vector', cipher: 'encryption algorithm' })
+
+# Or with a custom encryptor
+encryptor = Encryption::Symmetric.new
+encryptor.key = 'random string'
+"Interstate 60".encrypt(encryptor: encryptor)
   ```
 
 License

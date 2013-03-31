@@ -21,6 +21,7 @@ module Encryption
 
     def encryptor(options)
       return Encryption if options.empty?
+      return options[:encryptor] if ! options[:encryptor].nil?
 
       encrypt = Encryption::Symmetric.new
 
