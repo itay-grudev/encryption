@@ -1,6 +1,6 @@
 Encryption
 ==========
-
+[![Gem Version](https://badge.fury.io/rb/encryption.png)](http://badge.fury.io/rb/encryption)
 [![Code Climate](https://codeclimate.com/github/Itehnological/encryption.png)](https://codeclimate.com/github/Itehnological/encryption)
 [![Build Status](https://travis-ci.org/Itehnological/encryption.png)](https://travis-ci.org/Itehnological/encryption)
 
