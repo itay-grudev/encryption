@@ -18,7 +18,7 @@ module Encryption
     super
   end
 
-  def self.respond_to?(name)
+  def self.respond_to?(name, include_all = false)
     initalize_own_instance
 
     return true if @@instance.respond_to?(name)

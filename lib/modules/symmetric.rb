@@ -14,7 +14,7 @@ module Encryption
       super
     end
 
-    def respond_to?(name)
+    def respond_to?(name, include_all = false)
       return true if @configuration.respond_to? name
       super
     end
