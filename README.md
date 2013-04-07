@@ -4,7 +4,8 @@ Encryption
 [![Code Climate](https://codeclimate.com/github/Itehnological/encryption.png)](https://codeclimate.com/github/Itehnological/encryption)
 [![Build Status](https://travis-ci.org/Itehnological/encryption.png)](https://travis-ci.org/Itehnological/encryption)
 
-A simple wrapper for the OpenSSL Cipher library
+A simple wrapper for the OpenSSL Cipher library for Ruby and Rails applications.
+This gem provides you with an easy way to encrypt and decrypt any data using both symmetrical and asymmetrical algorithms.
 
 Installation
 ------------
@@ -25,7 +26,7 @@ Symmetric encryption
   A simple example of how the gem works:
   ```ruby
 Encryption.key = "Secretly yours,\n very long encryption key"
-data = "this is to remain secret"
+data = "this is to stay secret"
 encrypted_str = Encryption.encrypt(data)
 Encryption.decrypt(encrypted_str) == data # true
   ```
@@ -36,7 +37,7 @@ Encryption.decrypt(encrypted_str) == data # true
   ```ruby
 encryptor = Encryption::Symmetric.new
 encryptor.key = "Secretly yours,\n very long encryption key"
-data = "this is to remain secret"
+data = "this is to stay secret"
 encrypted_str = encryptor.encrypt(data)
 encryptor.decrypt(encrypted_str) == data # true
   ```
@@ -45,22 +46,23 @@ encryptor.decrypt(encrypted_str) == data # true
   -------------
   For symmetric encryption / decryption you need to set an encryption key. The rest of the settings are optional. Here is a list of all of them:  
   `Encryption.key` - Your encryption key  
-  `Encryption.iv # Optional` - Encryption initialization vector. Defaults to the charecter `"\0"`  _(Optional)_  
-  `Encryption.cipher # Optional` - Your encryption algorithm. Defaults to `aes-256-cbc` _(Optional)_  
+  `Encryption.iv # Optional` - Encryption initialization vector. Defaults to the character `"\0"` _(Optional)_  
+  `Encryption.cipher # Optional` - Your encryption algorithm. Defaults to `aes-256-cbc` _(Optional)_
+  
   Run `openssl list-cipher-commands` in the terminal to list all installed ciphers or call `OpenSSL::Cipher.ciphers` in _Ruby_, which will return an array, containing all available algorithms.
 
   You can optionally configure both a global instance and a custom instance with a _block_:
   ```ruby
 Encryption.config do |config|
-  config.key = "don't look at me!"
-  config.iv = "is there a better way to initialize OpenSSL?"
-  config.cipher = "camellia-128-ecb" # if you feel adventurous
+config.key = "don't look at me!"
+config.iv = "is there a better way to initialize OpenSSL?"
+config.cipher = "camellia-128-ecb" # if you feel adventurous
 end
   ```
 
 Asymmetric encryption (public/private key encryption)
 -----------------------------------------------------
-The `encryption` gem also provides easier synax for asymmetric encryption.
+The `encryption` gem also provides easier syntax for asymmetric encryption.
 
   Generating keypair
   ------------------
@@ -128,7 +130,7 @@ License
 -------
 This gem is distributed under The MIT License.
 
-  Author
-  ------
-  Itay Grudev  
-  &nbsp;&nbsp;![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
+Author
+------
+Itay Grudev 
+&nbsp; ![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
