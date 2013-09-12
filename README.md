@@ -2,7 +2,7 @@ Encryption
 ==========
 [![Gem Version](https://badge.fury.io/rb/encryption.png)](http://badge.fury.io/rb/encryption)
 [![Code Climate](https://codeclimate.com/github/Itehnological/encryption.png)](https://codeclimate.com/github/Itehnological/encryption)
-[![Build Status](https://travis-ci.org/Itehnological/encryption.png)](https://travis-ci.org/Itehnological/encryption)
+[![Build Status](https://travis-ci.org/itay-grudev/encryption.png?branch=master)](https://travis-ci.org/itay-grudev/encryption)
 
 A simple wrapper for the OpenSSL Cipher library for Ruby and Rails applications.
 This gem provides you with an easy way to encrypt and decrypt any data using both symmetrical and asymmetrical algorithms.
