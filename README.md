@@ -7,6 +7,10 @@ Encryption
 A simple wrapper for the OpenSSL Cipher library for Ruby and Rails applications.
 This gem provides you with an easy way to encrypt and decrypt any data using both symmetrical and asymmetrical algorithms.
 
+Documentation
+-------------
+Full documentation can be found in the [Wiki section](https://github.com/itay-grudev/encryption/wiki) of the repo.
+
 Installation
 ------------
 Run this command
