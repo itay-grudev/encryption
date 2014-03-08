@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = 'Encryption provides a simple interface for symmetric / asymmetric encryption with the OpenSSL Cipher library'
   s.authors     = ['Itay Grudev']
   s.email       = ['itay.grudev@gmail.com']
-  s.homepage    = 'http://itehnological.github.io/encryption/'
+  s.homepage    = 'http://itay-grudev.github.io/encryption/'
   s.files       = `git ls-files`.split("\n")
   s.require_paths = ['lib']
   s.license = "MIT"
