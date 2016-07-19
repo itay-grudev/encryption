@@ -136,5 +136,4 @@ This gem is distributed under The MIT License.
 
 Author
 ------
-Itay Grudev 
-&nbsp; ![Itay Grudev](http://safemail.justlikeed.net/e/a5307c0c2dd405f756cab9f4c76cd63a.png)
+Itay Grudev <itay()grudev...com>
