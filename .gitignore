@@ -1,0 +1,3 @@
+# Ignore Gemfile lock files and built gems
+*.lock
+*.gem
