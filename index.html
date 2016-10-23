@@ -35,138 +35,132 @@
 <a href="https://codeclimate.com/github/Itehnological/encryption"><img src="https://codeclimate.com/github/Itehnological/encryption.png" alt="Code Climate"></a>
 <a href="https://travis-ci.org/itay-grudev/encryption"><img src="https://travis-ci.org/itay-grudev/encryption.png?branch=master" alt="Build Status"></a></p>
 
-<p>A simple wrapper for the OpenSSL Cipher library for Ruby and Rails applications.
-This gem provides you with an easy way to encrypt and decrypt any data using both symmetrical and asymmetrical algorithms.</p>
+<p>A simple to use wrapper of the Ruby OpenSSL Cipher library for Ruby and Rails applications.
+This gem provides an easy to use interface for symmetrical and asymmetrical encryption using RSA.</p>
 
 <h2>
 <a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
 
-<p>Full documentation can be found in the <a href="https://github.com/itay-grudev/encryption/wiki">Wiki section</a> of the repo.</p>
+<p>Additional documentation and class reference can be found in the <a href="https://github.com/itay-grudev/encryption/wiki">Wiki section</a> of the repository.</p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>Run this command</p>
+<p>Install the gem</p>
 
 <div class="highlight highlight-source-shell"><pre>gem install encryption</pre></div>
 
-<p>or add this line to your <code>Gemfile</code></p>
+<p>or add it to your <code>Gemfile</code></p>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">"</span>encryption<span class="pl-pds">"</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>encryption<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="symmetric-encryption" class="anchor" href="#symmetric-encryption" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Symmetric encryption</h2>
 
-<p>Using a global instance of the Encryption class</p>
+<h3>
+<a id="using-the-global-instance-of-the-encryption-class" class="anchor" href="#using-the-global-instance-of-the-encryption-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the global instance of the Encryption class</h3>
 
-<hr>
+<p>A simple example of how this gem works:</p>
 
-<p>A simple example of how the gem works:</p>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Encryption</span>.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>A very long encryption key<span class="pl-pds">'</span></span>
+data <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>secret data<span class="pl-pds">'</span></span>
+encrypted_str <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>.encrypt( data )
+<span class="pl-c1">Encryption</span>.decrypt( encrypted_str ) <span class="pl-k">==</span> data <span class="pl-c"># true</span></pre></div>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Encryption</span>.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Secretly yours,<span class="pl-cce">\n</span> very long encryption key<span class="pl-pds">"</span></span>
-data <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>this is to stay secret<span class="pl-pds">"</span></span>
-encrypted_str <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>.encrypt(data)
-<span class="pl-c1">Encryption</span>.decrypt(encrypted_str) <span class="pl-k">==</span> data <span class="pl-c"># true</span></pre></div>
+<h3>
+<a id="using-your-own-instance-of-the-encryption-class" class="anchor" href="#using-your-own-instance-of-the-encryption-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using your own instance of the Encryption class</h3>
 
-<p>Using own instance of the Encryption class</p>
-
-<hr>
-
-<p>Sometimes it is useful to use an own instance with custom settings, rather than the global Encryption instance. Here is how you can achieve it.</p>
+<p>If you need a separate instance with custom settings, different than the global Encryption instance, here is how you can do it:</p>
 
 <div class="highlight highlight-source-ruby"><pre>encryptor <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Symmetric</span>.<span class="pl-k">new</span>
-encryptor.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Secretly yours,<span class="pl-cce">\n</span> very long encryption key<span class="pl-pds">"</span></span>
-data <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>this is to stay secret<span class="pl-pds">"</span></span>
-encrypted_str <span class="pl-k">=</span> encryptor.encrypt(data)
-encryptor.decrypt(encrypted_str) <span class="pl-k">==</span> data <span class="pl-c"># true</span></pre></div>
+encryptor.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>A very long encryption key<span class="pl-pds">'</span></span>
+data <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>secret data<span class="pl-pds">'</span></span>
+encrypted_str <span class="pl-k">=</span> encryptor.encrypt( data )
+encryptor.decrypt( encrypted_str ) <span class="pl-k">==</span> data <span class="pl-c"># true</span></pre></div>
 
-<p>Configuration</p>
+<h3>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h3>
 
-<hr>
+<p>For symmetric encryption/decryption you need to set an encryption key. You can also optionally set an initialization vector and a cipher.</p>
 
-<p>For symmetric encryption / decryption you need to set an encryption key. The rest of the settings are optional. Here is a list of all of them:<br>
-  <code>Encryption.key</code> - Your encryption key<br>
-  <code>Encryption.iv # Optional</code> - Encryption initialization vector. Defaults to the character <code>"\0"</code> <em>(Optional)</em><br>
-  <code>Encryption.cipher # Optional</code> - Your encryption algorithm. Defaults to <code>aes-256-cbc</code> <em>(Optional)</em></p>
+<p><code>Encryption.key</code> - Your encryption key<br>
+<code>Encryption.iv # Optional</code> - Encryption initialization vector. Defaults to the character <code>"\0"</code> <em>(Optional)</em><br>
+<code>Encryption.cipher # Optional</code> - Your encryption algorithm. Defaults to <code>aes-256-cbc</code> <em>(Optional)</em></p>
 
-<p>Run <code>openssl list-cipher-commands</code> in the terminal to list all installed ciphers or call <code>OpenSSL::Cipher.ciphers</code> in <em>Ruby</em>, which will return an array, containing all available algorithms.</p>
+<p>Running <code>openssl list-cipher-commands</code> in the terminal or calling <code>OpenSSL::Cipher.ciphers</code> in <em>Ruby</em>, which list all available ciphers.</p>
 
-<p>You can optionally configure both a global instance and a custom instance with a <em>block</em>:</p>
+<p>You can configure both the global instance and a other instances with a <em>block</em> like this:</p>
 
-<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Encryption</span>.config <span class="pl-k">do </span>|<span class="pl-smi">config</span>|
-config.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>don't look at me!<span class="pl-pds">"</span></span>
-config.iv <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>is there a better way to initialize OpenSSL?<span class="pl-pds">"</span></span>
-config.cipher <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>camellia-128-ecb<span class="pl-pds">"</span></span> <span class="pl-c"># if you feel adventurous</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">Encryption</span>.config <span class="pl-k">do </span>|<span class="pl-smi">e</span>|
+    e.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Don<span class="pl-pds">'</span></span>t look!<span class="pl-s"><span class="pl-pds">'</span></span>
+<span class="pl-s">    e.iv = <span class="pl-pds">'</span></span><span class="pl-c1">This</span> is probably the easiest way to use <span class="pl-c1">OpenSSL</span> <span class="pl-k">in</span> <span class="pl-c1">Ruby</span><span class="pl-s"><span class="pl-pds">'</span></span>
+<span class="pl-s">    e.cipher = <span class="pl-pds">'</span></span>camellia<span class="pl-k">-</span><span class="pl-c1">128</span><span class="pl-k">-</span>ecb<span class="pl-s"><span class="pl-pds">'</span> # if you<span class="pl-pds">'</span></span>re feeling adventurous
 <span class="pl-k">end</span></pre></div>
 
 <h2>
 <a id="asymmetric-encryption-publicprivate-key-encryption" class="anchor" href="#asymmetric-encryption-publicprivate-key-encryption" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Asymmetric encryption (public/private key encryption)</h2>
 
-<p>The <code>encryption</code> gem also provides easier syntax for asymmetric encryption.</p>
+<p>The <code>encryption</code> gem also provides a DSL for asymmetric encryption.</p>
 
-<p>Generating keypair</p>
+<h3>
+<a id="generating-keypair" class="anchor" href="#generating-keypair" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generating keypair</h3>
 
-<hr>
-
-<div class="highlight highlight-source-ruby"><pre>keypair <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Keypair</span>.<span class="pl-k">new</span> <span class="pl-c"># Accepts two optional arguments size = 2048 and password = nil</span>
+<div class="highlight highlight-source-ruby"><pre>keypair <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Keypair</span>.<span class="pl-k">new</span> <span class="pl-c"># Accepts two optional arguments: size = 2048, password = nil</span>
 keypair.public_key <span class="pl-c"># Instance of Encryption::PublicKey</span>
 keypair.private_key <span class="pl-c"># Instance of Encryption::PrivateKey</span>
-<span class="pl-c"># Or this for short</span>
-public_key, private_key <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Keypair</span>.generate(<span class="pl-c1">2048</span>)
+<span class="pl-c"># Or you can use this shorter version</span>
+public_key, private_key <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Keypair</span>.generate( <span class="pl-c1">2048</span> )
 
-<span class="pl-c"># Then you can export each to string</span>
+<span class="pl-c"># You can dump keys to string</span>
 private_key.to_s
 
-<span class="pl-c"># or to PEM format</span>
+<span class="pl-c"># or export them to PEM format</span>
 private_key.to_pem
 
-<span class="pl-c"># and optionally encrypt is with a passphrase</span>
-private_key.to_pem(<span class="pl-s"><span class="pl-pds">'</span>passphrase<span class="pl-pds">'</span></span>)</pre></div>
+<span class="pl-c"># and optionally encrypt them with a passphrase</span>
+private_key.to_pem( <span class="pl-s"><span class="pl-pds">'</span>passphrase<span class="pl-pds">'</span></span> )</pre></div>
 
-<p><code>Encryption::PublicKey</code> and <code>Encryption::PrivateKey</code></p>
+<h3>
+<a id="encryptionpublickey-and-encryptionprivatekey" class="anchor" href="#encryptionpublickey-and-encryptionprivatekey" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Encryption::PublicKey</code> and <code>Encryption::PrivateKey</code>
+</h3>
 
-<hr>
-
-<p>Both classes have the same methods</p>
+<p>Both classes have the same methods:</p>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Import an existing key</span>
-<span class="pl-c1">Encryption</span>::<span class="pl-c1">PublicKey</span>.<span class="pl-k">new</span>(filename[, password]) <span class="pl-c"># From file</span>
-<span class="pl-c1">Encryption</span>::<span class="pl-c1">PublicKey</span>.<span class="pl-k">new</span>(string[, password]) <span class="pl-c"># From string</span>
+<span class="pl-c1">Encryption</span>::<span class="pl-c1">PrivateKey</span>.<span class="pl-k">new</span>( filename[, password] ) <span class="pl-c"># Import from file</span>
+<span class="pl-c1">Encryption</span>::<span class="pl-c1">PrivateKey</span>.<span class="pl-k">new</span>( string[, password] ) <span class="pl-c"># Import from string</span>
 
 <span class="pl-c"># Encrypt / Decrypt data</span>
-public_key <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">PublicKey</span>.<span class="pl-k">new</span>(<span class="pl-s"><span class="pl-pds">"</span>existing key<span class="pl-pds">"</span></span>)
-public_key.encrypt(<span class="pl-s"><span class="pl-pds">"</span>2001: A Space Odyssey<span class="pl-pds">"</span></span>)
-public_key.decrypt(<span class="pl-s"><span class="pl-pds">"</span>H3LL0¡<span class="pl-pds">"</span></span>)
+public_key <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">PublicKey</span>.<span class="pl-k">new</span>( <span class="pl-s"><span class="pl-pds">'</span>existing key<span class="pl-pds">'</span></span> )
+public_key.encrypt( <span class="pl-s"><span class="pl-pds">'</span>some secret data<span class="pl-pds">'</span></span> )
+public_key.decrypt( <span class="pl-s"><span class="pl-pds">"</span>some encrypted data<span class="pl-pds">"</span></span> )</pre></div>
 
-<span class="pl-c"># Note that you can use both public and private keys to encrypt and decrypt data</span></pre></div>
+<p><em>Note: You can use both the public and the private key to encrypt or decrypt data.</em></p>
 
 <h2>
 <a id="helpers" class="anchor" href="#helpers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Helpers</h2>
 
-<p>String helper</p>
+<h3>
+<a id="string-helper" class="anchor" href="#string-helper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>String helper</h3>
 
-<hr>
-
-<p>The gem adds the <code>encrypt</code> and <code>decrypt</code> methods to the <code>String</code> class.
-  You can use them as follows:</p>
+<p>The gem adds the <code>encrypt</code> and <code>decrypt</code> methods to the <code>String</code> performing symmetric encryption. You can use them as follows:</p>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-c"># With the global Encryption instance</span>
-<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>.encrypt
-<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>.encrypt!
-<span class="pl-s"><span class="pl-pds">"</span>h3LL0<span class="pl-pds">"</span></span>.decrypt
-<span class="pl-s"><span class="pl-pds">"</span>h3LL0<span class="pl-pds">"</span></span>.decrypt!
+<span class="pl-s"><span class="pl-pds">'</span>Hello<span class="pl-pds">'</span></span>.encrypt
+<span class="pl-s"><span class="pl-pds">'</span>Hello<span class="pl-pds">'</span></span>.encrypt!
+<span class="pl-s"><span class="pl-pds">'</span>h3LL0<span class="pl-pds">'</span></span>.decrypt
+<span class="pl-s"><span class="pl-pds">'</span>h3LL0<span class="pl-pds">'</span></span>.decrypt!
 
 <span class="pl-c"># With custom settings (and custom encryptor instance)</span>
-<span class="pl-s"><span class="pl-pds">"</span>Contact<span class="pl-pds">"</span></span>.encrypt(<span class="pl-c1">key:</span> <span class="pl-s"><span class="pl-pds">'</span>encryption key<span class="pl-pds">'</span></span>, <span class="pl-c1">iv:</span> <span class="pl-s"><span class="pl-pds">'</span>initialization vector<span class="pl-pds">'</span></span>, <span class="pl-c1">cipher:</span> <span class="pl-s"><span class="pl-pds">'</span>encryption algorithm<span class="pl-pds">'</span></span>, <span class="pl-c1">encode:</span> <span class="pl-c1">true</span>)
-
+<span class="pl-s"><span class="pl-pds">'</span>secret<span class="pl-pds">'</span></span>.encrypt( <span class="pl-c1">key:</span> <span class="pl-s"><span class="pl-pds">'</span>encryption key<span class="pl-pds">'</span></span>, <span class="pl-c1">iv:</span> <span class="pl-s"><span class="pl-pds">'</span>initialization vector<span class="pl-pds">'</span></span>, <span class="pl-c1">cipher:</span> <span class="pl-s"><span class="pl-pds">'</span>encryption cipher<span class="pl-pds">'</span></span>, <span class="pl-c1">encode:</span> <span class="pl-c1">true</span> )
 <span class="pl-c"># Note the encode option which will result in a base64 encoded string</span>
 
-<span class="pl-s"><span class="pl-pds">"</span>3NcPyptED<span class="pl-pds">"</span></span>.decrypt!(<span class="pl-c1">encoded:</span> <span class="pl-c1">true</span>) <span class="pl-c"># Will decrypt an encoded string</span>
+<span class="pl-s"><span class="pl-pds">'</span>encrypted data<span class="pl-pds">'</span></span>.decrypt( <span class="pl-c1">encoded:</span> <span class="pl-c1">true</span> ) <span class="pl-c"># Will decrypt a base64 encoded string</span>
 
 <span class="pl-c"># Or with a custom encryptor</span>
 encryptor <span class="pl-k">=</span> <span class="pl-c1">Encryption</span>::<span class="pl-c1">Symmetric</span>.<span class="pl-k">new</span>
-encryptor.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>random string<span class="pl-pds">'</span></span>
-<span class="pl-s"><span class="pl-pds">"</span>Interstate 60<span class="pl-pds">"</span></span>.encrypt(<span class="pl-c1">encryptor:</span> encryptor)</pre></div>
+encryptor.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>encryption key<span class="pl-pds">'</span></span>
+<span class="pl-s"><span class="pl-pds">'</span>secret data<span class="pl-pds">'</span></span>.encrypt( <span class="pl-c1">encryptor:</span> encryptor )</pre></div>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
@@ -176,8 +170,7 @@ encryptor.key <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds
 <h2>
 <a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
 
-<p>Itay Grudev 
-  <a class="fckosb" href="javascript:window.location.href='mai'+'mqoc.vqeduxrg@yaxti:otxql'.replace(/[qx]/g,'').split('').reverse().join(''" onmouseover="this.href+=')';this.onmouseover=''">it<b>.</b>ay@gru<br>dev<i>.uk</i>.com</a></p>
+<p>Itay Grudev &lt;itay(at)grudev...com&gt;</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/itay-grudev">itay-grudev</a></p>
