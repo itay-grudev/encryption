@@ -1,3 +1,5 @@
+This project is currently stable, but will no longer be maintained.
+
 Encryption
 ==========
 [![Gem Version](https://badge.fury.io/rb/encryption.png)](http://badge.fury.io/rb/encryption)
